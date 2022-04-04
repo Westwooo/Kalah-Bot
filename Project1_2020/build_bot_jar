@@ -1,0 +1,9 @@
+#!/bin/bash
+find "MKAgent/" -name "*.class" > classes.txt
+for f in $(cat classes.txt) ; do
+  rm "$f"
+done
+find "MKAgent/" -name "*.java" > sources.txt
+javac @sources.txt
+find "MKAgent/" -name "*.class" > classes.txt
+jar cfe Group24.jar MKAgent.Main @classes.txt

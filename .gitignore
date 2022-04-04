@@ -1,0 +1,20 @@
+# IDE stuff
+.idea/*
+out/*
+*.iml
+.vscode/*
+
+# Compiled files for MKAgent
+Project1_2020/MKAgent/**/*.class
+
+# Compiled files for MankalahVerbose
+Project1_2020/ManKalahVerbose/*.class
+
+# Logs
+Project1_2020/player_1_error_log.txt
+Project1_2020/player_2_error_log.txt
+
+# Other stuff
+Project1_2020/sources.txt
+Project1_2020/classes.txt
+Project1_2020/Group24.jar

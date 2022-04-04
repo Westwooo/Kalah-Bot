@@ -1,0 +1,55 @@
+#!/bin/bash
+
+BOT=${1:-"jack"}
+DEPTH=${2:-6}
+SIDE=${3:-"NORTH"}
+OPPONENT=$4
+
+case $OPPONENT in
+  MKRefAgent | mkrefagent | mkref)
+    OPPONENT="java -jar MKRefAgent.jar"
+    ;;
+
+  Group2 | group2 | g2)
+    OPPONENT="java -jar Test_Agents/Group2Agent.jar"
+    ;;
+
+  JimmyPlayer | jimmyplayer | Jimmy | jimmy)
+    OPPONENT="java -jar Test_Agents/JimmyPlayer.jar"
+    ;;
+  JackBot | jackbot | jack)
+    OPPONENT="java MKAgent/Main 11 jack"
+    ;;
+  SafianBot | safbot | safian | saf)
+    OPPONENT="java MKAgent/Main 11 safian"
+    ;;
+  *)
+    OPPONENT="java -jar MKRefAgent.jar"
+    ;;
+esac
+
+case $SIDE in
+  s | south | SOUTH | South)
+    SIDE="SOUTH"
+    ;;
+  *)
+
+  SIDE="NORTH"
+  ;;
+esac
+
+find "MKAgent/" -name "*.class" > classes.txt
+for f in $(cat classes.txt) ; do
+  rm "$f"
+done
+
+find "MKAgent/" -name "*.java" > sources.txt
+javac @sources.txt
+
+if [[ "$SIDE" == "NORTH" ]]
+then
+  java -jar ManKalahVerbose.jar "$OPPONENT" "java MKAgent/Main $DEPTH $BOT"
+else
+  java -jar ManKalahVerbose.jar "java MKAgent/Main $DEPTH $BOT" "$OPPONENT"
+fi
+

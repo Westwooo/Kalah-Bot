@@ -1,0 +1,3 @@
+#!/bin/bash
+
+javac ManKalahVerbose/*.java && jar cfe ManKalahVerbose.jar ManKalahVerbose.GameEngine ManKalahVerbose/*.class
